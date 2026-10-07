@@ -52,3 +52,24 @@ for i in range(10):
         round(crash_probability[i], 3),
         crash[i]
     )
+
+
+# -------------------------
+# Save to file so downstream
+# scripts don't regenerate it
+# -------------------------
+
+data = np.column_stack(
+    (traffic_volume, average_speed, rain, night, crash)
+)
+
+np.savetxt(
+    "data/crash_data.csv",
+    data,
+    delimiter=",",
+    header="traffic_volume,average_speed,rain,night,crash",
+    comments="",
+    fmt="%.6f"
+)
+
+print("\nSaved data/crash_data.csv:", data.shape)
